@@ -4,7 +4,6 @@
 # Imports
 import csv
 
-
 # Define a function to pull data from a CSV file.
 def pull_csv_data(file_name, desc_loc, item_desc, item_loc):
     """Pulls data from a csv file.
@@ -40,7 +39,6 @@ def pull_csv_data(file_name, desc_loc, item_desc, item_loc):
 # Define a function to rewrite a CSV file.
 def rewrite_csv_data(file_name, item_list, separator):
     """Rewrite the CSV file with the new data on one line, separated with semicolons.
-    NOTE: Do NOT use this function until you have spoken to me.
 
     Args:
         file_name (str): Name of the CSV file.

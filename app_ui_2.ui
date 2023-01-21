@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>630</width>
-    <height>390</height>
+    <width>634</width>
+    <height>394</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,17 +17,23 @@
    <widget class="QFrame" name="window">
     <property name="geometry">
      <rect>
-      <x>-11</x>
+      <x>-10</x>
       <y>-10</y>
       <width>671</width>
       <height>441</height>
      </rect>
     </property>
+    <property name="maximumSize">
+     <size>
+      <width>671</width>
+      <height>441</height>
+     </size>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="styleSheet">
-     <string notr="true">QFrame {
-	background-color: #2c2137;
-	border-radius: 10px;
-}</string>
+     <string notr="true"/>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -46,8 +52,12 @@
      </property>
      <property name="styleSheet">
       <string notr="true">QFrame {
-	background-color: #764462;
+	border: 0.5px dashed;
 	border-radius: 10px;
+	border-top-color: black; 
+	border-left-color: black;
+	border-right-color: black;
+	border-bottom-color: black;
 }</string>
      </property>
      <property name="frameShape">
@@ -91,6 +101,7 @@ border-radius: 10px;
 	border-radius: 3px;
 	color: #edb4a1;
 	font: 25 13pt &quot;Cascadia Code Light&quot;;
+border: 0px;
 }</string>
       </property>
       <property name="text">
@@ -109,6 +120,7 @@ border-radius: 10px;
       <property name="styleSheet">
        <string notr="true">QLabel {
 	border-radius: 3px;
+	border: 0px;
 	color: #edb4a1;
 	font: 25 11pt &quot;Cascadia Code Light&quot;;
 }</string>
@@ -129,7 +141,7 @@ border-radius: 10px;
       <property name="styleSheet">
        <string notr="true">QLineEdit {
 	border-radius: 3px;
-	background-color: #a96868;
+	border: 10px;
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
@@ -146,7 +158,7 @@ border-radius: 10px;
        <rect>
         <x>10</x>
         <y>80</y>
-        <width>101</width>
+        <width>111</width>
         <height>21</height>
        </rect>
       </property>
@@ -155,6 +167,7 @@ border-radius: 10px;
 	border-radius: 3px;
 	color: #edb4a1;
 	font: 25 11pt &quot;Cascadia Code Light&quot;;
+border: 0px;
 }</string>
       </property>
       <property name="text">
@@ -173,7 +186,6 @@ border-radius: 10px;
       <property name="styleSheet">
        <string notr="true">QLineEdit {
 	border-radius: 3px;
-	background-color: #a96868;
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
@@ -201,6 +213,7 @@ border-radius: 10px;
 	border-radius: 3px;
 	color: #edb4a1;
 	font: 25 11pt &quot;Cascadia Code Light&quot;;
+border: 0px;
 }</string>
       </property>
       <property name="text">
@@ -217,8 +230,8 @@ border-radius: 10px;
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #a96868;
-border-radius: 8px;</string>
+       <string notr="true">border-radius: 8px;
+border: 1px solid;</string>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -236,6 +249,7 @@ border-radius: 8px;</string>
       <property name="styleSheet">
        <string notr="true">QLabel {
 	border-radius: 3px;
+	border: 0px;
 	color: #edb4a1;
 	font: 25 11pt &quot;Cascadia Code Light&quot;;
 }</string>
@@ -255,9 +269,9 @@ border-radius: 8px;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-radius: 3px;
-	background-color: #a96868;
 	color: #edb4a1;
 	padding: 2px;
+background-color: rgb(252, 252, 252);
 	padding-bottom: 5px;	
 	font: 63 8pt &quot;Cascadia Code SemiBold&quot;;</string>
       </property>
@@ -279,10 +293,10 @@ border-radius: 8px;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-radius: 3px;
-	background-color: #a96868;
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
+background-color: rgb(252, 252, 252);
 	font: 63 8pt &quot;Cascadia Code SemiBold&quot;;</string>
       </property>
       <property name="text">
@@ -300,11 +314,11 @@ border-radius: 8px;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-radius: 3px;
-	background-color: #a96868;
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
-	font: 63 8pt &quot;Cascadia Code SemiBold&quot;;</string>
+	font: 63 8pt &quot;Cascadia Code SemiBold&quot;;
+background-color: rgb(252, 252, 252);</string>
       </property>
       <property name="text">
        <string>Lo-Fi Music</string>
@@ -320,8 +334,8 @@ border-radius: 8px;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: #a96868;
-border-radius: 8px;</string>
+       <string notr="true">border-radius: 8px;
+border: 1px solid;</string>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -332,7 +346,7 @@ border-radius: 8px;</string>
        <rect>
         <x>10</x>
         <y>270</y>
-        <width>161</width>
+        <width>121</width>
         <height>21</height>
        </rect>
       </property>
@@ -341,6 +355,7 @@ border-radius: 8px;</string>
 	border-radius: 3px;
 	color: #edb4a1;
 	font: 25 11pt &quot;Cascadia Code Light&quot;;
+border: 0px;
 }</string>
       </property>
       <property name="text">
@@ -361,6 +376,7 @@ border-radius: 8px;</string>
 	border-radius: 3px;
 	color: #edb4a1;
 	font: 25 11pt &quot;Cascadia Code Light&quot;;
+border: 0px;
 }</string>
       </property>
       <property name="text">
@@ -379,15 +395,13 @@ border-radius: 8px;</string>
       <property name="styleSheet">
        <string notr="true">QPushButton {
 	border-radius: 5px;
+	background-color: rgb(252, 252, 252);
 	color: #edb4a1;
-	background-color: #a96868;
 	font: 11pt &quot;Cascadia Code&quot;;
 	padding-bottom: 2px;
 }
-QPushButton::hover {
-	color: rgb(203, 154, 138);
-	background-color:  rgb(149, 92, 92);
-}
+QPushButton::hover{
+background-color: rgb(240, 240, 240);}
 QPushButton::disabled {
 	color: rgb(108, 108, 108);
 	background-color: rgb(163, 163, 163);
@@ -410,21 +424,19 @@ QPushButton::disabled {
        <string notr="true">QPushButton {
 	border-radius: 5px;
 	color: #edb4a1;
-	background-color: #a96868;
 	font: 11pt &quot;Cascadia Code&quot;;
 	padding-bottom: 2px;
+background-color: rgb(252, 252, 252);
 }
-QPushButton::hover {
-	color: rgb(203, 154, 138);
-	background-color:  rgb(149, 92, 92);
-}
+QPushButton::hover{
+background-color: rgb(240, 240, 240);}
 QPushButton::disabled {
 	color: rgb(108, 108, 108);
 	background-color: rgb(163, 163, 163);
 }</string>
       </property>
       <property name="text">
-       <string>🌑</string>
+       <string>🌚</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="date">
@@ -439,7 +451,6 @@ QPushButton::disabled {
       <property name="styleSheet">
        <string notr="true">QLineEdit {
 	border-radius: 3px;
-	background-color: #a96868;
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
@@ -454,7 +465,7 @@ QPushButton::disabled {
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLineEdit" name="time">
+     <widget class="QLineEdit" name="time_input">
       <property name="geometry">
        <rect>
         <x>60</x>
@@ -466,7 +477,6 @@ QPushButton::disabled {
       <property name="styleSheet">
        <string notr="true">QLineEdit {
 	border-radius: 3px;
-	background-color: #a96868;
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
@@ -493,8 +503,12 @@ QPushButton::disabled {
      </property>
      <property name="styleSheet">
       <string notr="true">QFrame {
-	background-color: #764462;
+	border: 0.5px dashed;
 	border-radius: 10px;
+	border-top-color: black; 
+	border-left-color: black;
+	border-right-color: black;
+	border-bottom-color: black;
 }</string>
      </property>
      <property name="frameShape">
@@ -536,7 +550,7 @@ border-radius: 10px;
       <property name="styleSheet">
        <string notr="true">QLineEdit {
 	border-radius: 3px;
-	background-color: #a96868;
+	background-color: rgb(252, 252, 252);
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
@@ -559,6 +573,7 @@ border-radius: 10px;
       <property name="styleSheet">
        <string notr="true">QLabel {
 	border-radius: 3px;
+	border: 0px;
 	color: #edb4a1;
 	font: 25 13pt &quot;Cascadia Code Light&quot;;
 }</string>
@@ -580,13 +595,13 @@ border-radius: 10px;
        <string notr="true">QPushButton {
 	border-radius: 5px;
 	color: #edb4a1;
-	background-color: #a96868;
+background-color: rgb(252, 252, 252);
 	font: 11pt &quot;Cascadia Code&quot;;
 	padding-bottom: 2px;
 }
 QPushButton::hover {
 	color: rgb(203, 154, 138);
-	background-color:  rgb(149, 92, 92);
+	background-color: rgb(240, 240, 240);
 }
 QPushButton::disabled {
 	color: rgb(108, 108, 108);
@@ -610,13 +625,13 @@ QPushButton::disabled {
        <string notr="true">QPushButton {
 	border-radius: 5px;
 	color: rgb(72, 112, 86);
-	background-color: #a96868;
+background-color: rgb(252, 252, 252);
 	font: 11pt &quot;Cascadia Code&quot;;
 	padding-bottom: 2px;
 }
 QPushButton::hover {
 	color: rgb(203, 154, 138);
-	background-color: rgb(149, 92, 92);
+	background-color: rgb(240, 240, 240);
 }
 QPushButton::disabled {
 	color: rgb(108, 108, 108);
@@ -639,7 +654,7 @@ QPushButton::disabled {
       <property name="styleSheet">
        <string notr="true">QLineEdit {
 	border-radius: 3px;
-	background-color: #a96868;
+	background-color: rgb(252, 252, 252);
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
@@ -667,6 +682,7 @@ QPushButton::disabled {
 	border-radius: 3px;
 	color: #edb4a1;
 	font: 25 11pt &quot;Cascadia Code Light&quot;;
+border: 0px;
 }</string>
       </property>
       <property name="text">
@@ -685,7 +701,7 @@ QPushButton::disabled {
       <property name="styleSheet">
        <string notr="true">QLineEdit {
 	border-radius: 3px;
-	background-color: #a96868;
+	background-color: rgb(252, 252, 252);
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
@@ -708,8 +724,12 @@ QPushButton::disabled {
      </property>
      <property name="styleSheet">
       <string notr="true">QFrame {
-	background-color: #764462;
+	border: 0.5px dashed;
 	border-radius: 10px;
+	border-top-color: black; 
+	border-left-color: black;
+	border-right-color: black;
+	border-bottom-color: black;
 }</string>
      </property>
      <property name="frameShape">
@@ -752,13 +772,13 @@ border-radius: 10px;
        <string notr="true">QPushButton {
 	border-radius: 5px;
 	color: #edb4a1;
-	background-color: #a96868;
+	background-color: rgb(252, 252, 252);
 	font: 11pt &quot;Cascadia Code&quot;;
 	padding-bottom: 2px;
 }
 QPushButton::hover {
 	color: rgb(203, 154, 138);
-	background-color:  rgb(149, 92, 92);
+	background-color:  rgb(240, 240, 240);
 }
 QPushButton::disabled {
 	color: rgb(108, 108, 108);
@@ -782,12 +802,12 @@ QPushButton::disabled {
        <string notr="true">QPushButton {
 	border-radius: 5px;
 	color: rgb(80, 125, 97);
-	background-color: rgb(185, 114, 81);
+	background-color: rgb(252, 252, 252);
 	font: 11pt &quot;Cascadia Code&quot;;
 	padding-bottom: 2px;
 }
 QPushButton::hover {
-	background-color: rgb(166, 102, 73);
+	background-color: rgb(240, 240, 240);
 }</string>
       </property>
       <property name="text">
@@ -806,7 +826,6 @@ QPushButton::hover {
       <property name="styleSheet">
        <string notr="true">QLineEdit {
 	border-radius: 3px;
-	background-color: #a96868;
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
@@ -831,6 +850,7 @@ QPushButton::hover {
 	border-radius: 3px;
 	color: #edb4a1;
 	font: 25 13pt &quot;Cascadia Code Light&quot;;
+border: 0px;
 }</string>
       </property>
       <property name="text">
@@ -849,7 +869,6 @@ QPushButton::hover {
       <property name="styleSheet">
        <string notr="true">QLineEdit {
 	border-radius: 3px;
-	background-color: #a96868;
 	color: #edb4a1;
 	padding: 2px;
 	padding-bottom: 5px;	
@@ -874,6 +893,7 @@ QPushButton::hover {
 	border-radius: 3px;
 	color: #edb4a1;
 	font: 25 11pt &quot;Cascadia Code Light&quot;;
+border: 0px;
 }</string>
       </property>
       <property name="text">
@@ -893,13 +913,13 @@ QPushButton::hover {
        <string notr="true">QPushButton {
 	border-radius: 5px;
 	color: rgb(80, 125, 97);
-	background-color: rgb(200, 73, 73);
+	background-color: rgb(255, 0, 0);
 	font: 11pt &quot;Cascadia Code&quot;;
 	padding-bottom: 2px;
 }
 
 QPushButton:hover{
-	background-color: rgb(182, 66, 66);
+	background-color: rgb(222, 0, 0);
 }</string>
       </property>
       <property name="text">
@@ -916,12 +936,11 @@ QPushButton:hover{
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">
-	border-radius: 3px;
-	background-color: #a96868;
+       <string notr="true">border: 0px solid;
+border-color: none;
+border-radius: 6px;
 	color: #edb4a1;
-	padding: 2px;
-	padding-bottom: 5px;	
+	
 	font: 63 8pt &quot;Cascadia Code SemiBold&quot;;</string>
       </property>
       <property name="readOnly">

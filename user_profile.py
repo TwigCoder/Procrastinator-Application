@@ -1,11 +1,10 @@
-# File Code by Pranav Verma #
-
 # Imports
 import csv_data
+import time
+import app
 
 # Global Variables
 user = None
-
 
 # Class that holds all the attributes of the user.
 class User:
@@ -128,64 +127,22 @@ class User:
 
 
 # Define a function to initiate a new user to the application.
-def initiate_user(name, music):
-    """Initiates the new user with their name, music preference, and base stats.
-
-    Args:
-        name (str): Name of the user.
-        music (str): Genre of music that they wish to listen to.
+def initiate_user():
+    """Initiates the user with their name, music preference, and base stats from previous sessions.
     """
 
     # Use the attributes to create a global User class.
     global user
-
-    # Create the user class with base stats.
-    user = User(name, 0, music, [])
-
-    # Write to the CSV file that the user introduction is complete.
-
+    
+    name = csv_data.pull_csv_data('user_data.csv', 0, "name", 1)
     time_complete = int(csv_data.pull_csv_data('user_data.csv', 0, "totalTime", 1))
     music = csv_data.pull_csv_data('user_data.csv', 0, "music", 1)
 
-    csv_data.rewrite_csv_data("user_data.csv", [f"name,{name}", f"totalTime,0", f"music,{music}",
-                                                f"user_intro_done,t"], '\n')
+    # Create the user class with base stats.
+    user = User(name, time_complete, music, [])
+    user.create_tasks_list()
 
-
-# Define a function to pull all the user information from the CSV file.
-def create_user_profile(name=None, music=None):
-    # Check that the user has completed the introduction.
-    intro_done = csv_data.pull_csv_data("user_data.csv", 0, "user_intro_done", 1)
-
-    # Change the intro_done variable from a string to a boolean.
-    match intro_done:
-
-        # Case: t = True
-        case 't':
-            intro_done = True
-
-        # Case: f = False
-        case 'f':
-            intro_done = False
-
-    # If they are not a new user, check for attributes in the CSV file.
-    if intro_done:
-
-        # Download all the basic attributes of the user.
-        name = csv_data.pull_csv_data('user_data.csv', 0, "name", 1)
-        time_complete = int(csv_data.pull_csv_data('user_data.csv', 0, "totalTime", 1))
-        music = csv_data.pull_csv_data('user_data.csv', 0, "music", 1)
-
-        # Use the attributes to create a global User class.
-        global user
-        user = User(name, time_complete, music, [])
-
-        # Add previous tasks to the user.
-        user.create_tasks_list()
-        print(user.task_list)
-
-    # If they are a new user, call the initiation function.
-    if not intro_done:
-        initiate_user(name, music)
+    csv_data.rewrite_csv_data("user_data.csv", [f"name,{name}", f"totalTime,{time_complete}", f"music,{music}"], '\n')
 
 
 # Define a function to store the user data when closing the app.
@@ -195,27 +152,23 @@ def store_data(user_class):
     name = user_class.name
     time_complete = user_class.time_completed
     music = user_class.music
-    user_intro = csv_data.pull_csv_data("user_data.csv", 0, "user_intro_done", 1)
 
     # Write the user values to `vals.csv`.
-    csv_data.rewrite_csv_data('user_data.csv', [f"name,{name}", f"totalTime,{time_complete}", f"music,{music}",
-                                           f"user_intro_done,{user_intro}"], '\n')
+    csv_data.rewrite_csv_data('user_data.csv', [f"name,{name}", f"totalTime,{time_complete}", f"music,{music}"], '\n')
 
     # Prepare the tasks to be added to `task_list.csv`.
     all_tasks = ['tasks,']
     for task in user_class.task_list:
-        print(task)
+        #print(task)
         for section in task:
-            print(section)
+            #print(section)
             all_tasks.append(f"{section}")
 
     # Write all tasks down in `task_list.csv`.
     csv_data.rewrite_csv_data("task_list.csv", all_tasks, "_")
 
 
-# TODO: Move this code to the main python file (where the app runs). Remember: create_user_profile requires args when
-# TODO: the user is new.
 # Create the User.
-create_user_profile(name=None, music=None)
+#create_user_profile(name=None, music=None)
 # TODO: Only store data when the app is closed. (Requires app GUI).
-store_data(user)
+#store_data(user)
