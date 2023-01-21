@@ -28,12 +28,7 @@ class Ui_MainWindow(object):
         self.window_2 = QtWidgets.QFrame(self.window)
         self.window_2.setGeometry(QtCore.QRect(20, 20, 181, 371))
         self.window_2.setStyleSheet("QFrame {\n"
-"    border: 0.5px dashed;\n"
-"    border-radius: 10px;\n"
-"    border-top-color: black; \n"
-"    border-left-color: black;\n"
-"    border-right-color: black;\n"
-"    border-bottom-color: black;\n"
+"    \n"
 "}")
         self.window_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.window_2.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -107,13 +102,6 @@ class Ui_MainWindow(object):
 "border: 0px;\n"
 "}")
         self.DNALabel_11.setObjectName("DNALabel_11")
-        self.line = QtWidgets.QFrame(self.window_2)
-        self.line.setGeometry(QtCore.QRect(30, 120, 118, 3))
-        self.line.setStyleSheet("border-radius: 8px;\n"
-"border: 1px solid;")
-        self.line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line.setObjectName("line")
         self.DNALabel_13 = QtWidgets.QLabel(self.window_2)
         self.DNALabel_13.setGeometry(QtCore.QRect(10, 140, 171, 21))
         self.DNALabel_13.setStyleSheet("QLabel {\n"
@@ -151,13 +139,6 @@ class Ui_MainWindow(object):
 "    font: 63 8pt \"Cascadia Code SemiBold\";\n"
 "background-color: rgb(252, 252, 252);")
         self.lofi.setObjectName("lofi")
-        self.line_2 = QtWidgets.QFrame(self.window_2)
-        self.line_2.setGeometry(QtCore.QRect(30, 250, 118, 3))
-        self.line_2.setStyleSheet("border-radius: 8px;\n"
-"border: 1px solid;")
-        self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_2.setObjectName("line_2")
         self.DNALabel_14 = QtWidgets.QLabel(self.window_2)
         self.DNALabel_14.setGeometry(QtCore.QRect(10, 270, 121, 21))
         self.DNALabel_14.setStyleSheet("QLabel {\n"
@@ -234,16 +215,94 @@ class Ui_MainWindow(object):
         self.time_input.setText("")
         self.time_input.setReadOnly(True)
         self.time_input.setObjectName("time_input")
+        self.border = QtWidgets.QLineEdit(self.window_2)
+        self.border.setGeometry(QtCore.QRect(20, 121, 145, 3))
+        self.border.setStyleSheet("QLineEdit {\n"
+"    border-radius: 3px;\n"
+"    border: 2px solid;\n"
+"    border-top-color:  rgb(219, 167, 149);\n"
+"    border-right-color:  rgb(219, 167, 149);\n"
+"    border-left-color:  rgb(219, 167, 149);\n"
+"border-bottom-color: rgb(219, 167, 149);\n"
+"    \n"
+"    font: 63 8pt \"Cascadia Code SemiBold\";\n"
+"}")
+        self.border.setText("")
+        self.border.setDragEnabled(False)
+        self.border.setReadOnly(True)
+        self.border.setObjectName("border")
+        self.border_2 = QtWidgets.QLineEdit(self.window_2)
+        self.border_2.setGeometry(QtCore.QRect(20, 246, 145, 3))
+        self.border_2.setStyleSheet("\n"
+"    border-radius: 3px;\n"
+"    border: 2px solid;\n"
+"    border-top-color:  rgb(219, 167, 149);\n"
+"    border-right-color:  rgb(219, 167, 149);\n"
+"    border-left-color:  rgb(219, 167, 149);\n"
+"border-bottom-color: rgb(219, 167, 149);\n"
+"")
+        self.border_2.setText("")
+        self.border_2.setDragEnabled(False)
+        self.border_2.setReadOnly(True)
+        self.border_2.setObjectName("border_2")
+        self.frame = QtWidgets.QFrame(self.window_2)
+        self.frame.setGeometry(QtCore.QRect(6, 10, 169, 21))
+        self.frame.setStyleSheet("QFrame {\n"
+"border: 1px solid;\n"
+"border-radius: 6px;\n"
+"border-top-color: rgb(237, 180, 161);\n"
+"border-right-color: rgb(237, 180, 161);\n"
+"border-left-color: rgb(237, 180, 161);\n"
+"border-bottom-color: rgb(237, 180, 161);\n"
+"}")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.window_5 = QtWidgets.QFrame(self.window_2)
+        self.window_5.setGeometry(QtCore.QRect(0, 0, 181, 371))
+        self.window_5.setStyleSheet("QFrame {\n"
+"    border: 1px solid;\n"
+"    border-radius: 5px;\n"
+"    border-bottom-color: rgb(222, 169, 151);\n"
+"border-right-color: rgb(222, 169, 151);\n"
+"border-left-color: rgb(222, 169, 151);\n"
+"    border-top-color: rgb(222, 169, 151);\n"
+"}")
+        self.window_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.window_5.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.window_5.setObjectName("window_5")
+        self.frame_grip_4 = QtWidgets.QFrame(self.window_5)
+        self.frame_grip_4.setGeometry(QtCore.QRect(490, 270, 19, 19))
+        self.frame_grip_4.setStyleSheet("QFrame {\n"
+"border-radius: 10px;\n"
+"}")
+        self.frame_grip_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_grip_4.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_grip_4.setObjectName("frame_grip_4")
+        self.window_5.raise_()
+        self.border.raise_()
+        self.frame_grip_2.raise_()
+        self.DNALabel.raise_()
+        self.DNALabel_9.raise_()
+        self.name.raise_()
+        self.DNALabel_10.raise_()
+        self.total_time.raise_()
+        self.DNALabel_11.raise_()
+        self.DNALabel_13.raise_()
+        self.classic.raise_()
+        self.electronic.raise_()
+        self.lofi.raise_()
+        self.DNALabel_14.raise_()
+        self.DNALabel_15.raise_()
+        self.am_bt.raise_()
+        self.pm_bt.raise_()
+        self.date.raise_()
+        self.time_input.raise_()
+        self.border_2.raise_()
+        self.frame.raise_()
         self.window_3 = QtWidgets.QFrame(self.window)
         self.window_3.setGeometry(QtCore.QRect(210, 20, 421, 51))
-        self.window_3.setStyleSheet("QFrame {\n"
-"    border: 0.5px dashed;\n"
-"    border-radius: 10px;\n"
-"    border-top-color: black; \n"
-"    border-left-color: black;\n"
-"    border-right-color: black;\n"
-"    border-bottom-color: black;\n"
-"}")
+        self.window_3.setStyleSheet("")
         self.window_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.window_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.window_3.setObjectName("window_3")
@@ -345,16 +404,53 @@ class Ui_MainWindow(object):
 "}")
         self.sec.setText("")
         self.sec.setObjectName("sec")
+        self.frame_3 = QtWidgets.QFrame(self.window_3)
+        self.frame_3.setGeometry(QtCore.QRect(5, 15, 61, 21))
+        self.frame_3.setStyleSheet("QFrame {\n"
+"border: 1px solid;\n"
+"border-radius: 6px;\n"
+"border-top-color: rgb(237, 180, 161);\n"
+"border-right-color: rgb(237, 180, 161);\n"
+"border-left-color: rgb(237, 180, 161);\n"
+"border-bottom-color: rgb(237, 180, 161);\n"
+"}")
+        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_3.setObjectName("frame_3")
+        self.window_7 = QtWidgets.QFrame(self.window_3)
+        self.window_7.setGeometry(QtCore.QRect(0, 0, 421, 51))
+        self.window_7.setStyleSheet("QFrame {\n"
+"    border: 1px solid;\n"
+"    border-radius: 5px;\n"
+"    border-bottom-color: rgb(222, 169, 151);\n"
+"border-right-color: rgb(222, 169, 151);\n"
+"border-left-color: rgb(222, 169, 151);\n"
+"    border-top-color: rgb(222, 169, 151);\n"
+"}")
+        self.window_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.window_7.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.window_7.setObjectName("window_7")
+        self.frame_grip_7 = QtWidgets.QFrame(self.window_7)
+        self.frame_grip_7.setGeometry(QtCore.QRect(490, 270, 19, 19))
+        self.frame_grip_7.setStyleSheet("QFrame {\n"
+"border-radius: 10px;\n"
+"}")
+        self.frame_grip_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_grip_7.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_grip_7.setObjectName("frame_grip_7")
+        self.window_7.raise_()
+        self.frame_grip_3.raise_()
+        self.min.raise_()
+        self.DNALabel_8.raise_()
+        self.start_bt.raise_()
+        self.music_bt.raise_()
+        self.project_name.raise_()
+        self.DNALabel_12.raise_()
+        self.sec.raise_()
+        self.frame_3.raise_()
         self.window_4 = QtWidgets.QFrame(self.window)
         self.window_4.setGeometry(QtCore.QRect(210, 80, 421, 311))
-        self.window_4.setStyleSheet("QFrame {\n"
-"    border: 0.5px dashed;\n"
-"    border-radius: 10px;\n"
-"    border-top-color: black; \n"
-"    border-left-color: black;\n"
-"    border-right-color: black;\n"
-"    border-bottom-color: black;\n"
-"}")
+        self.window_4.setStyleSheet("")
         self.window_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.window_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.window_4.setObjectName("window_4")
@@ -409,7 +505,7 @@ class Ui_MainWindow(object):
         self.task_name.setText("")
         self.task_name.setObjectName("task_name")
         self.DNALabel_6 = QtWidgets.QLabel(self.window_4)
-        self.DNALabel_6.setGeometry(QtCore.QRect(160, -10, 101, 61))
+        self.DNALabel_6.setGeometry(QtCore.QRect(160, 0, 101, 51))
         self.DNALabel_6.setStyleSheet("QLabel {\n"
 "    border-radius: 3px;\n"
 "    color: #edb4a1;\n"
@@ -452,7 +548,7 @@ class Ui_MainWindow(object):
 "}")
         self.delete_bt.setObjectName("delete_bt")
         self.all_tasks = QtWidgets.QPlainTextEdit(self.window_4)
-        self.all_tasks.setGeometry(QtCore.QRect(20, 40, 381, 201))
+        self.all_tasks.setGeometry(QtCore.QRect(20, 50, 381, 191))
         self.all_tasks.setStyleSheet("border: 0px solid;\n"
 "border-color: none;\n"
 "border-radius: 6px;\n"
@@ -461,6 +557,42 @@ class Ui_MainWindow(object):
 "    font: 63 8pt \"Cascadia Code SemiBold\";")
         self.all_tasks.setReadOnly(True)
         self.all_tasks.setObjectName("all_tasks")
+        self.frame_2 = QtWidgets.QFrame(self.window_4)
+        self.frame_2.setGeometry(QtCore.QRect(150, 15, 111, 21))
+        self.frame_2.setStyleSheet("QFrame {\n"
+"border: 1px solid;\n"
+"border-radius: 6px;\n"
+"border-top-color: rgb(237, 180, 161);\n"
+"border-right-color: rgb(237, 180, 161);\n"
+"border-left-color: rgb(237, 180, 161);\n"
+"border-bottom-color: rgb(237, 180, 161);\n"
+"}")
+        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_2.setObjectName("frame_2")
+        self.window_6 = QtWidgets.QFrame(self.window_4)
+        self.window_6.setGeometry(QtCore.QRect(0, 0, 421, 311))
+        self.window_6.setStyleSheet("QFrame {\n"
+"    border: 1px solid;\n"
+"    border-radius: 5px;\n"
+"    border-bottom-color: rgb(222, 169, 151);\n"
+"border-right-color: rgb(222, 169, 151);\n"
+"border-left-color: rgb(222, 169, 151);\n"
+"    border-top-color: rgb(222, 169, 151);\n"
+"}")
+        self.window_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.window_6.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.window_6.setObjectName("window_6")
+        self.frame_grip_6 = QtWidgets.QFrame(self.window_6)
+        self.frame_grip_6.setGeometry(QtCore.QRect(490, 270, 19, 19))
+        self.frame_grip_6.setStyleSheet("QFrame {\n"
+"border-radius: 10px;\n"
+"}")
+        self.frame_grip_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_grip_6.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_grip_6.setObjectName("frame_grip_6")
+        self.window_6.raise_()
+        self.frame_2.raise_()
         self.frame_grip_5.raise_()
         self.enter.raise_()
         self.clear.raise_()

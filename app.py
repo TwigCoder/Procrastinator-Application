@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QMainWindow
 
 # Imports - My Modules
-from app_ui_2 import Ui_MainWindow
+from ui_app_ui_2 import Ui_MainWindow
 import user_profile
 import csv_data
 import timer
@@ -37,20 +37,30 @@ class Window(QMainWindow):
         self.setWindowOpacity(0.99)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
         
-        # Modifications to Window
-        self.setWindowTitle("Anti-Procrastination")
-        self.setFixedSize(630, 390)
-        
         # Set up profile and user.        
         user_profile.initiate_user()
         self.ui.name.setText(user_profile.user.name)
         self.ui.total_time.setText(str(user_profile.user.time_completed))
+        self.ui.project_name.setText(user_profile.user.project_name)
+        self.tasks = user_profile.user.task_list
+        print(self.tasks)
+        print(f"{self.tasks}")
         
+        # Add all previous tasks to screen.
+        self.show_tasks()
+            
+        
+        # Modifications to Window
+        self.setWindowTitle(f"Anti-Procrastination: {self.ui.project_name.text()}")
+        self.setFixedSize(630, 390)
         
         # Create keybindings.
         self.ui.clear.clicked.connect(self.task_clear)
         self.ui.project_name.textChanged.connect(self.update_titlebar)
         self.ui.name.textChanged.connect(self.update_name)
+        self.ui.project_name.textChanged.connect(self.update_project_name)
+        self.ui.enter.clicked.connect(self.add_task)
+        self.ui.delete_bt.clicked.connect(self.delete_task)
         
         # Run application threads.
         current_time_thread = threading.Thread(target=self.update_time)
@@ -62,6 +72,9 @@ class Window(QMainWindow):
 
     def update_name(self):
         user_profile.user.name = self.ui.name.text()
+        
+    def update_project_name(self):
+        user_profile.user.project_name = self.ui.project_name.text()
 
     def update_titlebar(self):
         self.setWindowTitle(f"Anti-Procrastinator: {self.ui.project_name.text()}")
@@ -69,6 +82,38 @@ class Window(QMainWindow):
     def task_clear(self):
         self.ui.task_name.setText("")
         self.ui.task_num.setText("")
+        
+    def show_tasks(self):
+        task_text = ""
+        task_num = 0
+        for task in self.tasks:
+            squiggles = ""
+            for i in range(0, len(f"Task {task_num + 1}:") - 1):
+                squiggles = f"{squiggles}~"
+            task_text = f"{task_text}Task {task_num+1}: {task[0]}\n{squiggles}\n"
+            task_num += 1
+        self.ui.all_tasks.setPlainText(task_text)
+        
+    def delete_task(self):
+        try:
+            task_num = int(self.ui.task_num.text())
+        except ValueError:
+            return "INTEGER INPUT REQUIRED"
+        
+        user_profile.user.delete_task(task_num)
+        self.tasks = user_profile.user.task_list
+        self.show_tasks()
+        
+    def add_task(self):
+        try:
+            task_1 = self.tasks[0]
+        except IndexError:
+            task_1 = "pass"
+        user_profile.user.add_task(self.ui.task_name.text())
+        if task_1[0] == "":
+            user_profile.user.delete_task(1)
+        self.tasks = user_profile.user.task_list
+        self.show_tasks()
     
     # Update the time constantly.
     def update_time(self):

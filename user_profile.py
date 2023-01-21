@@ -12,7 +12,7 @@ class User:
     """
 
     # Initialize the User profile with basic attributes.
-    def __init__(self, name, time, music="basic", task_list=None):
+    def __init__(self, name, time, music="basic", project="", task_list=None):
         """Initializes the user profile.
 
         Args:
@@ -26,6 +26,7 @@ class User:
         self.name = name
         self.time_completed = time
         self.music = music
+        self.project_name = project
         self.task_list = task_list
 
     # Define a function to add tasks to the list.
@@ -48,7 +49,7 @@ class User:
         # If valid, create the task.
         else:
             # Format: "Number: Task Name, Completion Status, Tags"
-            self.task_list.append([str(len(self.task_list) + 1), task, "incomplete", "none"])
+            self.task_list.append([task, "incomplete", "none"])
 
     # Define a function to remove tasks.
     def delete_task(self, task_num):
@@ -61,21 +62,15 @@ class User:
             str: Message stating whether the task was found or not.
         """
 
-        # Convert the task number to a string.
-        task_num = str(task_num)
-
-        # Check all the tasks in the list.
-        for task in self.task_list:
-
-            # Delete task if it is the correct task.
-            if task_num == task[0]:
-                self.task_list.remove(task)
-                return "Task found."
+       # Delete the task, if it exists.
+        try:
+            del self.task_list[task_num - 1]
 
         # Report an error if the task was not found.
-        print('ERROR: Task could not be found')
-        # TODO GUI: Add a popup when error is formed.
-        return 'ERROR 002: TASK NOT FOUND'
+        except IndexError:
+            print('ERROR: Task could not be found')
+            # TODO GUI: Add a popup when error is formed.
+            return 'ERROR 002: TASK NOT FOUND'
 
     # Create a list of tasks based off the values in `task_list.csv`.
     def create_tasks_list(self):
@@ -110,8 +105,8 @@ class User:
                 if task == '':
                     tasks_list.remove(task)
 
-            # Divide the tasks into groups of four.
-            grouped_tasks = [tasks_list[i:i + 4] for i in range(0, len(tasks_list), 4)]
+            # Divide the tasks into groups of three.
+            grouped_tasks = [tasks_list[i:i + 3] for i in range(0, len(tasks_list), 3)]
 
             # Add the grouped tasks to the User's task list.
             self.task_list = grouped_tasks
@@ -137,12 +132,13 @@ def initiate_user():
     name = csv_data.pull_csv_data('user_data.csv', 0, "name", 1)
     time_complete = int(csv_data.pull_csv_data('user_data.csv', 0, "totalTime", 1))
     music = csv_data.pull_csv_data('user_data.csv', 0, "music", 1)
+    project_name = csv_data.pull_csv_data('user_data.csv', 0, "project", 1)
 
     # Create the user class with base stats.
-    user = User(name, time_complete, music, [])
+    user = User(name, time_complete, music, project_name, [])
     user.create_tasks_list()
 
-    csv_data.rewrite_csv_data("user_data.csv", [f"name,{name}", f"totalTime,{time_complete}", f"music,{music}"], '\n')
+    csv_data.rewrite_csv_data("user_data.csv", [f"name,{name}", f"totalTime,{time_complete}", f"music,{music}", f"project,{project_name}"], '\n')
 
 
 # Define a function to store the user data when closing the app.
@@ -152,9 +148,10 @@ def store_data(user_class):
     name = user_class.name
     time_complete = user_class.time_completed
     music = user_class.music
+    project_name = user_class.project_name
 
     # Write the user values to `vals.csv`.
-    csv_data.rewrite_csv_data('user_data.csv', [f"name,{name}", f"totalTime,{time_complete}", f"music,{music}"], '\n')
+    csv_data.rewrite_csv_data('user_data.csv', [f"name,{name}", f"totalTime,{time_complete}", f"music,{music}", f"project,{project_name}"], '\n')
 
     # Prepare the tasks to be added to `task_list.csv`.
     all_tasks = ['tasks,']
