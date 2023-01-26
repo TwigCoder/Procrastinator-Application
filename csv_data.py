@@ -19,7 +19,7 @@ def pull_csv_data(file_name, desc_loc, item_desc, item_loc):
     """
 
     # Placeholder value.
-    value = '(╯▔皿▔)╯'
+    value = 'ヾ(⌐■_■)ノ♪'
 
     #  Open the CSV file.
     with open(file_name, mode='r') as f:

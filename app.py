@@ -11,13 +11,16 @@ from PyQt5.QtWidgets import QMainWindow
 
 # Imports - My Modules
 from ui_app_ui_2 import Ui_MainWindow
+from ui_time_ui import Ui_Form
 import user_profile
 import csv_data
 import timer
 import time_api
+import math
 
-# Enable better error logs.
+# Enable better error logs and debugging.
 cgitb.enable(format = 'text')
+win32mica.debugging = True
 
 # Fix app size on different screen resolutions.
 os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
@@ -34,8 +37,9 @@ class Window(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.setWindowOpacity(0.99)
+        #self.setWindowOpacity(0.99)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+        self.timer_ui = None
         
         # Set up profile and user.        
         user_profile.initiate_user()
@@ -43,24 +47,28 @@ class Window(QMainWindow):
         self.ui.total_time.setText(str(user_profile.user.time_completed))
         self.ui.project_name.setText(user_profile.user.project_name)
         self.tasks = user_profile.user.task_list
-        print(self.tasks)
-        print(f"{self.tasks}")
         
         # Add all previous tasks to screen.
         self.show_tasks()
+        self.hour = 0
+        self.minute = 0
             
         
         # Modifications to Window
         self.setWindowTitle(f"Anti-Procrastination: {self.ui.project_name.text()}")
+        #self.setWindowIcon(QtGui.QIcon("icon.png"))
+        self.setWindowIcon(QtGui.QIcon('logo.png'))
         self.setFixedSize(630, 390)
         
         # Create keybindings.
         self.ui.clear.clicked.connect(self.task_clear)
         self.ui.project_name.textChanged.connect(self.update_titlebar)
         self.ui.name.textChanged.connect(self.update_name)
-        self.ui.project_name.textChanged.connect(self.update_project_name)
         self.ui.enter.clicked.connect(self.add_task)
         self.ui.delete_bt.clicked.connect(self.delete_task)
+        self.ui.up_bt.clicked.connect(self.move_task_up)
+        self.ui.down_bt.clicked.connect(self.move_task_down)
+        self.ui.start_bt.clicked.connect(self.timer_input)
         
         # Run application threads.
         current_time_thread = threading.Thread(target=self.update_time)
@@ -78,6 +86,7 @@ class Window(QMainWindow):
 
     def update_titlebar(self):
         self.setWindowTitle(f"Anti-Procrastinator: {self.ui.project_name.text()}")
+        self.update_project_name()
 
     def task_clear(self):
         self.ui.task_name.setText("")
@@ -88,7 +97,7 @@ class Window(QMainWindow):
         task_num = 0
         for task in self.tasks:
             squiggles = ""
-            for i in range(0, len(f"Task {task_num + 1}:") - 1):
+            for squiggle in range(0, len(f"Task {task_num + 1}:")):
                 squiggles = f"{squiggles}~"
             task_text = f"{task_text}Task {task_num+1}: {task[0]}\n{squiggles}\n"
             task_num += 1
@@ -109,11 +118,81 @@ class Window(QMainWindow):
             task_1 = self.tasks[0]
         except IndexError:
             task_1 = "pass"
-        user_profile.user.add_task(self.ui.task_name.text())
+        if self.ui.task_name.text() != "":
+            user_profile.user.add_task(self.ui.task_name.text())
+        else:
+            user_profile.user.add_task("Empty task.")
         if task_1[0] == "":
             user_profile.user.delete_task(1)
         self.tasks = user_profile.user.task_list
         self.show_tasks()
+        
+    def move_task_up(self):
+        try:
+            task_1 = self.tasks[0]
+        except IndexError:
+            task_1 = "pass"
+            
+        try:
+            task_num = int(self.ui.task_num.text())
+        except ValueError:
+            return "INTEGER INPUT REQUIRED"
+        
+        user_profile.user.insert_task(task_num, task_num - 1)
+        
+        if task_1[0] == "":
+            user_profile.user.delete_task(1)
+        
+        self.tasks = user_profile.user.task_list
+        self.ui.task_num.setText(f"{task_num - 1}")
+        self.show_tasks()
+        
+    def move_task_down(self):
+        try:
+            task_1 = self.tasks[0]
+        except IndexError:
+            task_1 = "pass"
+            
+        try:
+            task_num = int(self.ui.task_num.text())
+        except ValueError:
+            return "INTEGER INPUT REQUIRED"
+        
+        user_profile.user.insert_task(task_num, task_num + 1)
+        
+        if task_1[0] == "":     
+            user_profile.user.delete_task(1)
+        
+        self.tasks = user_profile.user.task_list
+        self.ui.task_num.setText(f"{task_num + 1}")
+        self.show_tasks()
+    
+    # Check timer input.
+    def timer_input(self):
+        try:
+            if self.ui.hour.text() == "":
+                hours = 0
+            else:
+                hours = int(self.ui.hour.text())
+            if self.ui.min.text() == "":
+                minutes = 0
+            else:    
+                minutes = int(self.ui.min.text())
+            
+            if minutes == 0 and hours == 0:
+                the_feared_error = int("ᕦ(ò_óˇ)ᕤ")
+            
+        except ValueError:
+            self.ui.hour.setText("")
+            self.ui.min.setText("")
+            return "ERROR: INVALID INPUTS"
+        
+        self.hour = hours
+        self.minute = minutes
+        
+        self.timer_ui = tWindow()
+        self.timer_ui.show()
+        window.hide()
     
     # Update the time constantly.
     def update_time(self):
@@ -159,7 +238,92 @@ class Window(QMainWindow):
                 self.ui.am_bt.setDisabled(True)
                 self.ui.am_bt.setText("")
                 self.ui.pm_bt.setText("🌚")
+                
+class tWindow(QWidget):
+
+    # Create initial app conditions.
+    def __init__(self):
+        
+        # Set up the application.
+        QWidget.__init__(self)
+        self.ui = Ui_Form()
+        self.ui.setupUi(self)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
+        self.run = True
+        
+        # Mica Effect
+        thwnd = self.winId().__int__()
+        win32mica.ApplyMica(thwnd, darkdetect.isDark())
+        
+        # Set up profile and user.        
+        self.ui.project_name.setText(user_profile.user.project_name)
+        self.tasks = user_profile.user.task_list
+        self.paused = False
+        self.current_time_left = timer.time_left
+        
+        # Modifications to Window
+        self.setWindowTitle(f"Anti-Procrastination: {self.ui.project_name.text()}")
+        self.setWindowIcon(QtGui.QIcon('logo.png'))
+        self.setFixedSize(453, 83)
+        
+        # Create keybindings.
+        self.ui.project_name.textChanged.connect(self.update_titlebar)
+        self.ui.stop_bt.clicked.connect(self.timer_stopped)
+        self.ui.pause_bt.clicked.connect(self.pause_timer)
+        
+        # Run the countdown timer.
+        seconds = 3600 * window.hour + 60 * window.minute
+        self.ui.seconds.setText(str(seconds))
+        time_api.create_countdown(seconds)
+        
+        # Run countdown threads.
+        update_time_thread = threading.Thread(target=self.update_hour_min)
+        update_time_thread.start()
+   
+    def timer_stopped(self):
+        self.hide()
+        timer.kill_thread = True
+        self.run = False
+        window.show()
+        print("Stopped!")
+        
+    def update_project_name(self):
+        user_profile.user.project_name = self.ui.project_name.text()
+        
+    def update_hour_min(self):
+        while self.run:
+
+            seconds = csv_data.pull_csv_data("vals.csv", 0, "time", 1)
+            if self.ui.seconds.text() != str(seconds) and str(seconds) != "ヾ(⌐■_■)ノ♪":
+                self.ui.seconds.setText(str(seconds))
+                    
+            time.sleep(0.01)
             
+            if self.ui.seconds.text() == "0" or self.ui.seconds.text() == "00":
+                self.timer_stopped()
+        
+        print("thread killed")
+        
+    def pause_timer(self):
+        
+        if not self.paused:
+            self.current_time_left = timer.time_left
+            self.run = False
+            timer.kill_thread = True
+            self.paused = True
+        
+        else:
+            time_api.create_countdown(self.current_time_left)
+            self.run = True
+            update_time_thread = threading.Thread(target=self.update_hour_min)
+            update_time_thread.start()
+            self.paused = False
+        
+    def update_titlebar(self):
+        self.setWindowTitle(f"Anti-Procrastinator: {self.ui.project_name.text()}")
+        window.setWindowTitle(f"Anti-Procrastinator: {self.ui.project_name.text()}")
+        window.ui.project_name.setText(f"{self.ui.project_name.text()}")
+        self.update_project_name()
             
 # Create and run the application from windows class.
 if __name__ == "__main__":

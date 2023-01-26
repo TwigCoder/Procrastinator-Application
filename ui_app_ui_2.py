@@ -314,9 +314,9 @@ class Ui_MainWindow(object):
         self.frame_grip_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_grip_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_grip_3.setObjectName("frame_grip_3")
-        self.min = QtWidgets.QLineEdit(self.window_3)
-        self.min.setGeometry(QtCore.QRect(70, 16, 41, 20))
-        self.min.setStyleSheet("QLineEdit {\n"
+        self.hour = QtWidgets.QLineEdit(self.window_3)
+        self.hour.setGeometry(QtCore.QRect(70, 16, 41, 20))
+        self.hour.setStyleSheet("QLineEdit {\n"
 "    border-radius: 3px;\n"
 "    background-color: rgb(252, 252, 252);\n"
 "    color: #edb4a1;\n"
@@ -324,8 +324,8 @@ class Ui_MainWindow(object):
 "    padding-bottom: 5px;    \n"
 "    font: 63 8pt \"Cascadia Code SemiBold\";\n"
 "}")
-        self.min.setText("")
-        self.min.setObjectName("min")
+        self.hour.setText("")
+        self.hour.setObjectName("hour")
         self.DNALabel_8 = QtWidgets.QLabel(self.window_3)
         self.DNALabel_8.setGeometry(QtCore.QRect(10, 0, 51, 51))
         self.DNALabel_8.setStyleSheet("QLabel {\n"
@@ -392,9 +392,9 @@ class Ui_MainWindow(object):
 "border: 0px;\n"
 "}")
         self.DNALabel_12.setObjectName("DNALabel_12")
-        self.sec = QtWidgets.QLineEdit(self.window_3)
-        self.sec.setGeometry(QtCore.QRect(130, 16, 41, 20))
-        self.sec.setStyleSheet("QLineEdit {\n"
+        self.min = QtWidgets.QLineEdit(self.window_3)
+        self.min.setGeometry(QtCore.QRect(130, 16, 41, 20))
+        self.min.setStyleSheet("QLineEdit {\n"
 "    border-radius: 3px;\n"
 "    background-color: rgb(252, 252, 252);\n"
 "    color: #edb4a1;\n"
@@ -402,8 +402,8 @@ class Ui_MainWindow(object):
 "    padding-bottom: 5px;    \n"
 "    font: 63 8pt \"Cascadia Code SemiBold\";\n"
 "}")
-        self.sec.setText("")
-        self.sec.setObjectName("sec")
+        self.min.setText("")
+        self.min.setObjectName("min")
         self.frame_3 = QtWidgets.QFrame(self.window_3)
         self.frame_3.setGeometry(QtCore.QRect(5, 15, 61, 21))
         self.frame_3.setStyleSheet("QFrame {\n"
@@ -438,16 +438,16 @@ class Ui_MainWindow(object):
         self.frame_grip_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_grip_7.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_grip_7.setObjectName("frame_grip_7")
+        self.frame_3.raise_()
         self.window_7.raise_()
         self.frame_grip_3.raise_()
-        self.min.raise_()
+        self.hour.raise_()
         self.DNALabel_8.raise_()
         self.start_bt.raise_()
         self.music_bt.raise_()
         self.project_name.raise_()
         self.DNALabel_12.raise_()
-        self.sec.raise_()
-        self.frame_3.raise_()
+        self.min.raise_()
         self.window_4 = QtWidgets.QFrame(self.window)
         self.window_4.setGeometry(QtCore.QRect(210, 80, 421, 311))
         self.window_4.setStyleSheet("")
@@ -480,9 +480,9 @@ class Ui_MainWindow(object):
 "    background-color: rgb(163, 163, 163);\n"
 "}")
         self.enter.setObjectName("enter")
-        self.clear = QtWidgets.QPushButton(self.window_4)
-        self.clear.setGeometry(QtCore.QRect(240, 280, 61, 21))
-        self.clear.setStyleSheet("QPushButton {\n"
+        self.down_bt = QtWidgets.QPushButton(self.window_4)
+        self.down_bt.setGeometry(QtCore.QRect(270, 280, 31, 21))
+        self.down_bt.setStyleSheet("QPushButton {\n"
 "    border-radius: 5px;\n"
 "    color: rgb(80, 125, 97);\n"
 "    background-color: rgb(252, 252, 252);\n"
@@ -492,7 +492,7 @@ class Ui_MainWindow(object):
 "QPushButton::hover {\n"
 "    background-color: rgb(240, 240, 240);\n"
 "}")
-        self.clear.setObjectName("clear")
+        self.down_bt.setObjectName("down_bt")
         self.task_name = QtWidgets.QLineEdit(self.window_4)
         self.task_name.setGeometry(QtCore.QRect(20, 250, 281, 21))
         self.task_name.setStyleSheet("QLineEdit {\n"
@@ -538,23 +538,56 @@ class Ui_MainWindow(object):
         self.delete_bt.setStyleSheet("QPushButton {\n"
 "    border-radius: 5px;\n"
 "    color: rgb(80, 125, 97);\n"
-"    background-color: rgb(255, 0, 0);\n"
+"    background-color: rgb(252, 252, 252);\n"
+"    border: 1px solid;\n"
+"    border-top-color: rgb(255, 0, 0);\n"
+"    border-right-color: rgb(255, 0, 0);\n"
+"    border-left-color: rgb(255, 0, 0);\n"
+"    border-bottom-color: rgb(255, 0, 0);\n"
 "    font: 11pt \"Cascadia Code\";\n"
 "    padding-bottom: 2px;\n"
 "}\n"
-"\n"
-"QPushButton:hover{\n"
-"    background-color: rgb(222, 0, 0);\n"
+"QPushButton::hover {\n"
+"    background-color: rgb(240, 240, 240);\n"
+"    border-top-color: rgb(227, 0, 0);\n"
+"    border-right-color: rgb(227, 0, 0);\n"
+"    border-left-color: rgb(227, 0, 0);\n"
+"    border-bottom-color: rgb(227, 0, 0);\n"
 "}")
         self.delete_bt.setObjectName("delete_bt")
         self.all_tasks = QtWidgets.QPlainTextEdit(self.window_4)
         self.all_tasks.setGeometry(QtCore.QRect(20, 50, 381, 191))
-        self.all_tasks.setStyleSheet("border: 0px solid;\n"
-"border-color: none;\n"
-"border-radius: 6px;\n"
-"    color: #edb4a1;\n"
-"    \n"
-"    font: 63 8pt \"Cascadia Code SemiBold\";")
+        self.all_tasks.setStyleSheet("             QPlainTextEdit{\n"
+"             border: 0px solid;\n"
+"             border-color: none;\n"
+"             border-radius: 6px;\n"
+"             color: #edb4a1;\n"
+"             font: 63 8pt \"Cascadia Code SemiBold\";\n"
+"             }\n"
+"        QScrollBar:vertical {\n"
+"            border: 0px solid #dca795;\n"
+"            background:white;   \n"
+"            margin: 0px 0px 0px 0px;\n"
+"               width: 1px;\n"
+"        }\n"
+"        QScrollBar::handle:vertical {         \n"
+"       \n"
+"            min-height: 0px;\n"
+"              border: 0px solid red;\n"
+"            border-radius: 5px;\n"
+"            background-color: #dca795;\n"
+"        }\n"
+"        QScrollBar::add-line:vertical {       \n"
+"            height: 0px;\n"
+"            subcontrol-position: bottom;\n"
+"            subcontrol-origin: margin;\n"
+"        }\n"
+"        QScrollBar::sub-line:vertical {\n"
+"            height: 0px;\n"
+"            subcontrol-position: top;\n"
+"            subcontrol-origin: margin;\n"
+"        }\n"
+"")
         self.all_tasks.setReadOnly(True)
         self.all_tasks.setObjectName("all_tasks")
         self.frame_2 = QtWidgets.QFrame(self.window_4)
@@ -591,11 +624,37 @@ class Ui_MainWindow(object):
         self.frame_grip_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_grip_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_grip_6.setObjectName("frame_grip_6")
+        self.clear = QtWidgets.QPushButton(self.window_6)
+        self.clear.setGeometry(QtCore.QRect(90, 280, 61, 21))
+        self.clear.setStyleSheet("QPushButton {\n"
+"    border-radius: 5px;\n"
+"    color: rgb(80, 125, 97);\n"
+"    background-color: rgb(252, 252, 252);\n"
+"    font: 11pt \"Cascadia Code\";\n"
+"    padding-bottom: 2px;\n"
+"}\n"
+"QPushButton::hover {\n"
+"    background-color: rgb(240, 240, 240);\n"
+"}")
+        self.clear.setObjectName("clear")
+        self.up_bt = QtWidgets.QPushButton(self.window_6)
+        self.up_bt.setGeometry(QtCore.QRect(230, 280, 31, 21))
+        self.up_bt.setStyleSheet("QPushButton {\n"
+"    border-radius: 5px;\n"
+"    color: rgb(80, 125, 97);\n"
+"    background-color: rgb(252, 252, 252);\n"
+"    font: 11pt \"Cascadia Code\";\n"
+"    padding-bottom: 2px;\n"
+"}\n"
+"QPushButton::hover {\n"
+"    background-color: rgb(240, 240, 240);\n"
+"}")
+        self.up_bt.setObjectName("up_bt")
         self.window_6.raise_()
         self.frame_2.raise_()
         self.frame_grip_5.raise_()
         self.enter.raise_()
-        self.clear.raise_()
+        self.down_bt.raise_()
         self.task_name.raise_()
         self.DNALabel_6.raise_()
         self.DNALabel_7.raise_()
@@ -628,8 +687,44 @@ class Ui_MainWindow(object):
         self.project_name.setText(_translate("MainWindow", "Project Name"))
         self.DNALabel_12.setText(_translate("MainWindow", ":"))
         self.enter.setText(_translate("MainWindow", "⇒"))
-        self.clear.setText(_translate("MainWindow", "🧹"))
+        self.down_bt.setText(_translate("MainWindow", "🔽"))
         self.DNALabel_6.setText(_translate("MainWindow", "Task List"))
         self.DNALabel_7.setText(_translate("MainWindow", "#"))
         self.delete_bt.setText(_translate("MainWindow", "🗑️"))
-        self.all_tasks.setPlainText(_translate("MainWindow", "Task 1:"))
+        self.all_tasks.setPlainText(_translate("MainWindow", "Task 1:\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+""))
+        self.clear.setText(_translate("MainWindow", "🧹"))
+        self.up_bt.setText(_translate("MainWindow", "🔼"))

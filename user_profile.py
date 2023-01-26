@@ -71,6 +71,40 @@ class User:
             print('ERROR: Task could not be found')
             # TODO GUI: Add a popup when error is formed.
             return 'ERROR 002: TASK NOT FOUND'
+        
+    # Define a function to add tasks to the list.
+    def insert_task(self, task_num, place):
+        """Insert a task in list of tasks the user owns to another position.
+
+        Args:
+            task_num (num): Number of the task to be moved.
+            
+            place (num): New position of the task.
+
+        Returns:
+            str: Error message stating that the task was not found.
+        """
+
+        # Check that there is such a task.
+        if (len(self.task_list) < task_num) or (task_num <= 0):
+            # TODO GUI: Add popup that tells user that the task is invalid because of `_`.
+            print("TASK NOT FOUND")
+            print(task_num, len(self.task_list))
+            return "ERROR 009: TASK NOT FOUND"
+
+        # If valid, insert the task.
+        else:
+            # Format: "Number: Task Name, Completion Status, Tags"
+            
+            # Get the task information.
+            task = self.task_list[task_num-1][0]
+            status = self.task_list[task_num-1][1]
+            tags = self.task_list[task_num-1][2]
+            
+            # Insert the task.
+            if place - 1 > -1:
+                self.delete_task(task_num)
+                self.task_list.insert(place - 1, [task, status, tags])
 
     # Create a list of tasks based off the values in `task_list.csv`.
     def create_tasks_list(self):
@@ -163,9 +197,3 @@ def store_data(user_class):
 
     # Write all tasks down in `task_list.csv`.
     csv_data.rewrite_csv_data("task_list.csv", all_tasks, "_")
-
-
-# Create the User.
-#create_user_profile(name=None, music=None)
-# TODO: Only store data when the app is closed. (Requires app GUI).
-#store_data(user)
