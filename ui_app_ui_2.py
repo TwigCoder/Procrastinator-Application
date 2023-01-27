@@ -650,6 +650,24 @@ class Ui_MainWindow(object):
 "    background-color: rgb(240, 240, 240);\n"
 "}")
         self.up_bt.setObjectName("up_bt")
+        self.editTask = QtWidgets.QPushButton(self.window_6)
+        self.editTask.setGeometry(QtCore.QRect(190, 280, 31, 20))
+        self.editTask.setStyleSheet("QPushButton {\n"
+"    border-radius: 5px;\n"
+"    color: #edb4a1;\n"
+"background-color: rgb(252, 252, 252);\n"
+"    font: 11pt \"Cascadia Code\";\n"
+"    padding-bottom: 2px;\n"
+"}\n"
+"QPushButton::hover {\n"
+"    color: rgb(203, 154, 138);\n"
+"    background-color: rgb(240, 240, 240);\n"
+"}\n"
+"QPushButton::disabled {\n"
+"    color: rgb(108, 108, 108);\n"
+"    background-color: rgb(163, 163, 163);\n"
+"}")
+        self.editTask.setObjectName("editTask")
         self.window_6.raise_()
         self.frame_2.raise_()
         self.frame_grip_5.raise_()
@@ -728,3 +746,4 @@ class Ui_MainWindow(object):
 ""))
         self.clear.setText(_translate("MainWindow", "🧹"))
         self.up_bt.setText(_translate("MainWindow", "🔼"))
+        self.editTask.setText(_translate("MainWindow", "🖋️"))

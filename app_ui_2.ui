@@ -1323,6 +1323,36 @@ QPushButton::hover {
         <string>🔼</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="editTask">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>280</y>
+         <width>31</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	border-radius: 5px;
+	color: #edb4a1;
+background-color: rgb(252, 252, 252);
+	font: 11pt &quot;Cascadia Code&quot;;
+	padding-bottom: 2px;
+}
+QPushButton::hover {
+	color: rgb(203, 154, 138);
+	background-color: rgb(240, 240, 240);
+}
+QPushButton::disabled {
+	color: rgb(108, 108, 108);
+	background-color: rgb(163, 163, 163);
+}</string>
+       </property>
+       <property name="text">
+        <string>🖋️</string>
+       </property>
+      </widget>
      </widget>
      <zorder>window_6</zorder>
      <zorder>frame_2</zorder>

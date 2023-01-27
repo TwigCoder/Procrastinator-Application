@@ -29,9 +29,6 @@ def countdown(seconds):
     # Run the countdown timer (ends when time runs out).
     while time_left > 0:
 
-        # TODO: Delete when testing is over.
-        print(time_left)
-
         # Count down one second.
         time_left -= 1
 
