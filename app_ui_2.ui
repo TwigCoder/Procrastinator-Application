@@ -693,7 +693,7 @@ border-radius: 10px;
      <widget class="QPushButton" name="start_bt">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>360</x>
         <y>16</y>
         <width>41</width>
         <height>20</height>
@@ -720,42 +720,12 @@ QPushButton::disabled {
        <string>▷</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="music_bt">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>16</y>
-        <width>51</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton {
-	border-radius: 5px;
-	color: rgb(72, 112, 86);
-background-color: rgb(252, 252, 252);
-	font: 11pt &quot;Cascadia Code&quot;;
-	padding-bottom: 2px;
-}
-QPushButton::hover {
-	color: rgb(203, 154, 138);
-	background-color: rgb(240, 240, 240);
-}
-QPushButton::disabled {
-	color: rgb(108, 108, 108);
-	background-color: rgb(163, 163, 163);
-}</string>
-      </property>
-      <property name="text">
-       <string>🎼</string>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="project_name">
       <property name="geometry">
        <rect>
         <x>180</x>
         <y>16</y>
-        <width>121</width>
+        <width>171</width>
         <height>20</height>
        </rect>
       </property>
@@ -899,7 +869,6 @@ border-radius: 10px;
      <zorder>hour</zorder>
      <zorder>DNALabel_8</zorder>
      <zorder>start_bt</zorder>
-     <zorder>music_bt</zorder>
      <zorder>project_name</zorder>
      <zorder>DNALabel_12</zorder>
      <zorder>min</zorder>

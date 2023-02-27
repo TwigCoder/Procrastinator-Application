@@ -18,7 +18,7 @@ class User:
         Args:
             name (str): Name of the user.
             time (int): Number of seconds the user has been in work and break mode..
-            music (str, optional): Type of music the user listens to. Defaults to "basic".
+            music (list, optional): Type of music the user listens to. Defaults to "basic".
             task_list (list, optional): List of tasks the user has created. Defaults to [].
         """
         if task_list is None:

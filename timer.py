@@ -1,5 +1,3 @@
-# File Code by Pranav Verma #
-
 # Imports
 import time
 import threading
@@ -29,9 +27,6 @@ def countdown(seconds):
     # Run the countdown timer (ends when time runs out).
     while time_left > 0:
 
-        # Count down one second.
-        time_left -= 1
-
         # Wait for one second before removing another second.
         time.sleep(1)
         
@@ -45,6 +40,11 @@ def countdown(seconds):
         if kill_thread:
             time_left = 0
             break
+        
+        # Else, continue running the timer.
+        else:
+            # Count down one second.
+            time_left -= 1
 
 
 # Run the countdown timer as a thread.

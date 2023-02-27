@@ -20,12 +20,3 @@ def create_countdown(seconds):
     
     # Run the countdown function from `timer.py`.
     timer.run_countdown_thread()
-
-
-# Test Runs.
-# TODO: Delete when done.
-#create_countdown(True)
-#time.sleep(11)
-#create_countdown(False)
-#time.sleep(3)
-#create_countdown(True)

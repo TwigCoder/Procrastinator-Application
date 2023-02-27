@@ -336,7 +336,7 @@ class Ui_MainWindow(object):
 "}")
         self.DNALabel_8.setObjectName("DNALabel_8")
         self.start_bt = QtWidgets.QPushButton(self.window_3)
-        self.start_bt.setGeometry(QtCore.QRect(310, 16, 41, 20))
+        self.start_bt.setGeometry(QtCore.QRect(360, 16, 41, 20))
         self.start_bt.setStyleSheet("QPushButton {\n"
 "    border-radius: 5px;\n"
 "    color: #edb4a1;\n"
@@ -353,26 +353,8 @@ class Ui_MainWindow(object):
 "    background-color: rgb(163, 163, 163);\n"
 "}")
         self.start_bt.setObjectName("start_bt")
-        self.music_bt = QtWidgets.QPushButton(self.window_3)
-        self.music_bt.setGeometry(QtCore.QRect(360, 16, 51, 20))
-        self.music_bt.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: rgb(72, 112, 86);\n"
-"background-color: rgb(252, 252, 252);\n"
-"    font: 11pt \"Cascadia Code\";\n"
-"    padding-bottom: 2px;\n"
-"}\n"
-"QPushButton::hover {\n"
-"    color: rgb(203, 154, 138);\n"
-"    background-color: rgb(240, 240, 240);\n"
-"}\n"
-"QPushButton::disabled {\n"
-"    color: rgb(108, 108, 108);\n"
-"    background-color: rgb(163, 163, 163);\n"
-"}")
-        self.music_bt.setObjectName("music_bt")
         self.project_name = QtWidgets.QLineEdit(self.window_3)
-        self.project_name.setGeometry(QtCore.QRect(180, 16, 121, 20))
+        self.project_name.setGeometry(QtCore.QRect(180, 16, 171, 20))
         self.project_name.setStyleSheet("QLineEdit {\n"
 "    border-radius: 3px;\n"
 "    background-color: rgb(252, 252, 252);\n"
@@ -444,7 +426,6 @@ class Ui_MainWindow(object):
         self.hour.raise_()
         self.DNALabel_8.raise_()
         self.start_bt.raise_()
-        self.music_bt.raise_()
         self.project_name.raise_()
         self.DNALabel_12.raise_()
         self.min.raise_()
@@ -701,7 +682,6 @@ class Ui_MainWindow(object):
         self.pm_bt.setText(_translate("MainWindow", "🌚"))
         self.DNALabel_8.setText(_translate("MainWindow", "Timer"))
         self.start_bt.setText(_translate("MainWindow", "▷"))
-        self.music_bt.setText(_translate("MainWindow", "🎼"))
         self.project_name.setText(_translate("MainWindow", "Project Name"))
         self.DNALabel_12.setText(_translate("MainWindow", ":"))
         self.enter.setText(_translate("MainWindow", "⇒"))

@@ -22,7 +22,7 @@ import math
 cgitb.enable(format = 'text')
 win32mica.debugging = True
 
-# Fix app size on different screen resolutions.
+# Scale app size on different screen resolutions.
 os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
 
 # Compiling ui file command: python.exe -m PyQt5.uic.pyuic app_ui.ui -o app_ui.py
@@ -37,7 +37,6 @@ class Window(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        #self.setWindowOpacity(0.99)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
         self.timer_ui = None
         
@@ -52,11 +51,9 @@ class Window(QMainWindow):
         self.show_tasks()
         self.hour = 0
         self.minute = 0
-            
         
         # Modifications to Window
         self.setWindowTitle(f"Anti-Procrastination: {self.ui.project_name.text()}")
-        #self.setWindowIcon(QtGui.QIcon("icon.png"))
         self.setWindowIcon(QtGui.QIcon('logo.png'))
         self.setFixedSize(630, 390)
         
@@ -77,10 +74,9 @@ class Window(QMainWindow):
 
         # Show the application on the screen.
         self.show()
-        # self.ui.error_console.hide()
     
-    ## INIT FUNCTION ENDS ##
-
+    ## Update components on screen when information is edited by user.
+    
     def update_name(self):
         user_profile.user.name = self.ui.name.text()
         
@@ -106,139 +102,180 @@ class Window(QMainWindow):
             task_num += 1
         self.ui.all_tasks.setPlainText(task_text)
         
+    ##
+        
     def delete_task(self):
+        # Delete the task indicated by the user.
+        
+        # Check that the task number is a valid number.
         try:
             task_num = int(self.ui.task_num.text())
         except ValueError:
             return "INTEGER INPUT REQUIRED"
         
+        # Update task lists and screen.
         user_profile.user.delete_task(task_num)
         self.tasks = user_profile.user.task_list
         self.show_tasks()
         
     def add_task(self):
+        
+        # Check if there are any tasks in the list.
         try:
             task_1 = self.tasks[0]
         except IndexError:
             task_1 = "pass"
+            
+        # Check that the task does have text.
         if self.ui.task_name.text() != "":
             user_profile.user.add_task(self.ui.task_name.text())
         else:
             user_profile.user.add_task("Empty task.")
         if task_1[0] == "":
             user_profile.user.delete_task(1)
+            
+        # Update task lists and screen.
         self.tasks = user_profile.user.task_list
         self.ui.task_name.setText("")
         self.show_tasks()
         
     def move_task_up(self):
+        
+        # Check that there are tasks in the list of tasks.
         try:
             task_1 = self.tasks[0]
         except IndexError:
             task_1 = "pass"
-            
+        
+        # Check that the task number is a valid number.
         try:
             task_num = int(self.ui.task_num.text())
         except ValueError:
             return "INTEGER INPUT REQUIRED"
         
+        # Update the user task list.
         user_profile.user.insert_task(task_num, task_num - 1)
         
         if task_1[0] == "":
             user_profile.user.delete_task(1)
-            
+        
+        # Change the task number is the user box to match the new task number. Bound it to keep it reasonable.
         if task_num <= 1:
             self.ui.task_num.setText("1")
         else:
             self.ui.task_num.setText(f"{task_num - 1}")
             
+        # Update the tasks list and the screen.
         self.tasks = user_profile.user.task_list
         self.show_tasks()
         
     def move_task_down(self):
+        
+        # Check that there are tasks in the list of tasks.
         try:
             task_1 = self.tasks[0]
         except IndexError:
             task_1 = "pass"
             
+        # Check that the task number is a valid number.
         try:
             task_num = int(self.ui.task_num.text())
         except ValueError:
             return "INTEGER INPUT REQUIRED"
         
+        # Update the user task list.
         user_profile.user.insert_task(task_num, task_num + 1)
-        
         self.tasks = user_profile.user.task_list
         
         if task_1[0] == "":     
             user_profile.user.delete_task(1)
             
+        # Change the task number is the user box to match the new task number. Bound it to keep it reasonable.
         if task_num >= len(self.tasks):
             self.ui.task_num.setText(f"{len(self.tasks)}")
         else:
             self.ui.task_num.setText(f"{task_num + 1}")
         
+        # Update the screen with the new task list.
         self.show_tasks()
     
-    # Check timer input.
     def timer_input(self):
+        
+        # Validate user inputs for hours and minutes.
         try:
+            
+            # Automatically set empty text to zero.
             if self.ui.hour.text() == "":
                 hours = 0
             else:
                 hours = int(self.ui.hour.text())
+                
+            # Automatically set empty text to zero.
             if self.ui.min.text() == "":
                 minutes = 0
             else:    
                 minutes = int(self.ui.min.text())
             
+            # If the time equals zero seconds, do not run the timer.
             if minutes == 0 and hours == 0:
-                the_feared_error = int("ᕦ(ò_óˇ)ᕤ")
-            
+                the_feared_error = int("e")
+        
+        # Reset the minute and hour inputs if invalid.
         except ValueError:
             self.ui.hour.setText("")
             self.ui.min.setText("")
             return "ERROR: INVALID INPUTS"
         
+        # Else, set the values for hours and minutes.
         self.hour = hours
         self.minute = minutes
         
+        # Run the timer widget window and hide the main window.
         self.timer_ui = tWindow()
         self.timer_ui.show()
         window.hide()
         
     def edit_task(self):
+        
+        # Check that the task number is a valid number.
         try:
             task_num = int(self.ui.task_num.text())
         except ValueError:
             return "INTEGER INPUT REQUIRED"
         
+        
+        # Check that there are tasks in the list.
         try:
             task_1 = self.tasks[0]
         except IndexError:
             task_1 = "pass"
             
+        # Reset the first task if it is empty.
         if task_1[0] == "":
             user_profile.user.delete_task(1)
         
+        # Search for the task.
         if task_num > 0 and task_num <= len(self.tasks):
             
+            # Check that the new task name is valid.
             if "_" not in self.ui.task_name.text():
                 
+                # Make sure that the task name is not empty.
                 if self.ui.task_name.text() != "":
         
                     user_profile.user.task_list[task_num - 1][0] = self.ui.task_name.text()
                     
+                # Set the task name to "Empty Task" if the task name is empty.
                 else:
                     user_profile.user.task_list[task_num - 1][0] = "Empty task."
                     
+                # Update the user tasks list and screen.
                 self.tasks = user_profile.user.task_list
                 self.show_tasks()
     
-    # Update the time constantly.
     def update_time(self):
         
-        # Run while application running.
+        # Run while the application is running.
         while True:
             
             # Get current time information.
@@ -280,6 +317,7 @@ class Window(QMainWindow):
                 self.ui.am_bt.setText("")
                 self.ui.pm_bt.setText("🌚")
                 
+# Create the timer widget window.
 class tWindow(QWidget):
 
     # Create initial app conditions.
@@ -292,7 +330,7 @@ class tWindow(QWidget):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground, True)
         self.run = True
         
-        # Mica Effect
+        # Set up the mica effect.
         thwnd = self.winId().__int__()
         win32mica.ApplyMica(thwnd, darkdetect.isDark())
         
@@ -308,7 +346,7 @@ class tWindow(QWidget):
         self.setFixedSize(453, 99)
         self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
         
-        # Show the task.
+        # Show the current task at hand.
         self.show_task()
         
         # Create keybindings.
@@ -333,85 +371,125 @@ class tWindow(QWidget):
         # Calculate and update the total time.
         time_elapsed = self.total_time - self.current_time_left
         
+        # Retrieve all values in the user_data CSV file.
         name = csv_data.pull_csv_data("user_data.csv", 0, "name", 1)
         music = csv_data.pull_csv_data("user_data.csv", 0, "music", 1)
         time_complete = int(csv_data.pull_csv_data("user_data.csv", 0, "totalTime", 1))
         project_name = csv_data.pull_csv_data("user_data.csv", 0, "project", 1)
         
+        # Update the user profile with the new number of seconds completed.
         user_profile.user.time_completed = int(time_complete) + time_elapsed
         
+        # Update the user_data CSV file with the new number of seconds elapsed.
         csv_data.rewrite_csv_data("user_data.csv", [f"name,{name}", f"totalTime,{int(time_complete) + time_elapsed}", f"music,{music}", f"project,{project_name}"], '\n')
         
+        # Display the floor of the number of hours the timer was used.
         window.ui.total_time.setText(str(math.floor((time_complete + time_elapsed) / 3600)))
         
+        # Final Check: Update the user profile with the new number of seconds completed.
         user_profile.user.time_completed = time_complete + time_elapsed
         
-        # Manage the windows and deal with threads.
-        self.hide()
+        # Finish off all running threads.
         timer.kill_thread = True
+        
+        # Show the main window and hide this window.
+        self.hide()
         self.run = False
         window.show()
-        print("Stopped!")
         
     def update_project_name(self):
+        # Update the project name when edited.
         user_profile.user.project_name = self.ui.project_name.text()
         
     def update_hour_min(self):
+        
+        # Run while the timer is running.
         while self.run:
-
+            
+            # Retrieve the number of seconds remaining in the timer.
             seconds = csv_data.pull_csv_data("vals.csv", 0, "time", 1)
-            if self.ui.seconds.text() != str(seconds) and str(seconds) != "ヾ(⌐■_■)ノ♪":
+            
+            # Ensure that the retrieved value is not modified.
+            if self.ui.seconds.text() != str(seconds) and str(seconds) != "PLACEHOLDER":
+                self.ui.seconds.setText(str(seconds))
+                
+            # Ensure time is not set to a placeholder.
+            elif self.ui.seconds.text() == "PLACEHOLDER":
+                # Attempt to pull data again.
+                seconds = csv_data.pull_csv_data("vals.csv", 0, "time", 1)
+                
+                # Update timer.
                 self.ui.seconds.setText(str(seconds))
             
             # Update the time remaining.
             self.current_time_left = timer.time_left
-            
             time.sleep(0.01)
             
+            # Update the timer whenever there is a change.
             if self.ui.seconds.text() == "0" or self.ui.seconds.text() == "00":
                 self.timer_stopped()
         
-        print("thread killed")
-        
     def pause_timer(self):
         
+        # Pause the timer if not already paused.
         if not self.paused:
+            
+            # Determine the number of seconds left.
             self.current_time_left = timer.time_left
+            
+            # Stop the threads and create a paused state.
             self.run = False
             timer.kill_thread = True
             self.paused = True
         
+        # Unpause the timer when it is paused.
         else:
+            
+            # Restart the countdowns from where they left off.
             time_api.create_countdown(self.current_time_left)
             self.run = True
             update_time_thread = threading.Thread(target=self.update_hour_min)
             update_time_thread.start()
+            
+            # End the paused state.
             self.paused = False
         
     def update_titlebar(self):
+        
+        # Update changes to titlebar.
         self.setWindowTitle(f"Anti-Procrastinator: {self.ui.project_name.text()}")
         window.setWindowTitle(f"Anti-Procrastinator: {self.ui.project_name.text()}")
         window.ui.project_name.setText(f"{self.ui.project_name.text()}")
         self.update_project_name()
         
     def show_task(self):
+        
+        # Show the task at the top of the task list.
         task_text = ""
         if len(self.tasks) > 0:
             task_text = f"{self.tasks[0][0]}"
         self.ui.all_tasks.setPlainText(task_text)
         
     def finish_tasks(self):
+        
+        # Delete the task.
         window.ui.task_num.setText("1")
         window.delete_task()
+        
+        # Update the task screen in the main window (hidden).
         window.show_tasks()
         window.task_clear()
+        
+        # Show the new task the user is to complete.
         self.show_task()
         
     def skip_task(self):
         
+        # Send the current (top) task to the end of the list.
         if len(user_profile.user.task_list) > 0:
             user_profile.user.insert_task(1, len(user_profile.user.task_list))
             
+            # Update the main window screen and the timer widget screen.
             window.show_tasks()
             self.show_task()
             
@@ -419,7 +497,13 @@ class tWindow(QWidget):
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = Window()
+    
+    # Enable the mica effect, based on light vs dark theme of user system.
     hwnd = window.winId()
     win32mica.ApplyMica(hwnd, darkdetect.isDark())
+    
+    # Execute the app.
     app.exec_()
+    
+    # Store user information when application is exited.
     user_profile.store_data(user_profile.user)

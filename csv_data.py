@@ -1,6 +1,3 @@
-# File Code by Pranav Verma #
-# All CSV files created and managed by Pranav Verma #
-
 # Imports
 import csv
 
@@ -19,7 +16,7 @@ def pull_csv_data(file_name, desc_loc, item_desc, item_loc):
     """
 
     # Placeholder value.
-    value = 'ヾ(⌐■_■)ノ♪'
+    value = 'PLACEHOLDER'
 
     #  Open the CSV file.
     with open(file_name, mode='r') as f:

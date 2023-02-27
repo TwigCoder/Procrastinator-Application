@@ -37,7 +37,7 @@ class Ui_Form(object):
         self.frame_grip_7.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_grip_7.setObjectName("frame_grip_7")
         self.project_name = QtWidgets.QLineEdit(self.window_7)
-        self.project_name.setGeometry(QtCore.QRect(170, 11, 141, 20))
+        self.project_name.setGeometry(QtCore.QRect(170, 11, 151, 20))
         self.project_name.setStyleSheet("QLineEdit {\n"
 "    border-radius: 3px;\n"
 "    background-color: rgb(252, 252, 252);\n"
@@ -62,7 +62,7 @@ class Ui_Form(object):
         self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_3.setObjectName("frame_3")
         self.stop_bt = QtWidgets.QPushButton(self.window_7)
-        self.stop_bt.setGeometry(QtCore.QRect(320, 11, 31, 20))
+        self.stop_bt.setGeometry(QtCore.QRect(330, 11, 41, 20))
         self.stop_bt.setStyleSheet("QPushButton {\n"
 "    border-radius: 5px;\n"
 "    color: rgb(80, 125, 97);\n"
@@ -96,24 +96,6 @@ class Ui_Form(object):
         self.seconds.setText("")
         self.seconds.setReadOnly(True)
         self.seconds.setObjectName("seconds")
-        self.music_bt = QtWidgets.QPushButton(self.window_7)
-        self.music_bt.setGeometry(QtCore.QRect(401, 11, 20, 20))
-        self.music_bt.setStyleSheet("QPushButton {\n"
-"    border-radius: 5px;\n"
-"    color: rgb(72, 112, 86);\n"
-"background-color: rgb(252, 252, 252);\n"
-"    font: 11pt \"Cascadia Code\";\n"
-"    padding-bottom: 2px;\n"
-"}\n"
-"QPushButton::hover {\n"
-"    color: rgb(203, 154, 138);\n"
-"    background-color: rgb(240, 240, 240);\n"
-"}\n"
-"QPushButton::disabled {\n"
-"    color: rgb(108, 108, 108);\n"
-"    background-color: rgb(163, 163, 163);\n"
-"}")
-        self.music_bt.setObjectName("music_bt")
         self.DNALabel_8 = QtWidgets.QLabel(self.window_7)
         self.DNALabel_8.setGeometry(QtCore.QRect(16, -5, 51, 51))
         self.DNALabel_8.setStyleSheet("QLabel {\n"
@@ -124,7 +106,7 @@ class Ui_Form(object):
 "}")
         self.DNALabel_8.setObjectName("DNALabel_8")
         self.pause_bt = QtWidgets.QPushButton(self.window_7)
-        self.pause_bt.setGeometry(QtCore.QRect(360, 11, 31, 20))
+        self.pause_bt.setGeometry(QtCore.QRect(380, 11, 41, 20))
         self.pause_bt.setStyleSheet("QPushButton {\n"
 "    border-radius: 5px;\n"
 "    color: #edb4a1;\n"
@@ -225,7 +207,6 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form"))
         self.project_name.setText(_translate("Form", "Project Name"))
         self.stop_bt.setText(_translate("Form", "🛑"))
-        self.music_bt.setText(_translate("Form", "🎼"))
         self.DNALabel_8.setText(_translate("Form", "Timer"))
         self.pause_bt.setText(_translate("Form", "⏸️"))
         self.all_tasks.setPlainText(_translate("Form", "Task 1:\n"
